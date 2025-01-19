@@ -1,11 +1,5 @@
-public class A {
-  private String password;
+package P1;
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+public interface A {
 
-  public String getPassword() {
-    return password;
-  }
 }
