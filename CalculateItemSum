@@ -1,0 +1,51 @@
+package com.app.entity;
+
+import lombok.Getter;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+public class CalculateItemSum {
+    private String item;
+    private double price;
+    private int quantity;
+
+    public CalculateItemSum(String item, double price, int quantity) {
+        this.item = item;
+        this.price = price;
+        this.quantity = quantity;
+    }
+    
+    public String getItem(){
+        return item;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public static void main(String[] args) {
+     List<CalculateItemSum> itemSumList = new ArrayList<>();
+        itemSumList.add(new CalculateItemSum("item1", 23.23, 2));
+        itemSumList.add(new CalculateItemSum("item2", 16.43, 4));
+        itemSumList.add(new CalculateItemSum("item3", 34.23, 5));
+        itemSumList.add(new CalculateItemSum("item4", 56.23, 6));
+        itemSumList.add(new CalculateItemSum("item5", 29.23, 7));
+        itemSumList.add(new CalculateItemSum("item6", 28.23, 3));
+        itemSumList.add(new CalculateItemSum("item7", 25.23, 6));
+        double totalSum = 0.0;
+
+        for(CalculateItemSum item : itemSumList) {
+            totalSum += item.getPrice() * item.getQuantity();
+        }
+        double sum = itemSumList.stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum();
+        System.out.println("Total Sum price $"+totalSum);
+        System.out.println("Sum use of java 8 method $"+ sum);
+    }
+}
